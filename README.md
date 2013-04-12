@@ -19,7 +19,7 @@ Then connect to it using the client:
 Build
 -----
 
-AChat is built using the GCC toolchain under Linux and Window. Run
+AChat can be built using the GCC toolchain under Linux and Windows. Run
 
     make
     
