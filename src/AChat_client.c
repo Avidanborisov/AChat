@@ -71,10 +71,10 @@ void chatter(int sockfd)
 	out = newWindow(0, 0, outSize, cols - 2, COLOR_PAIR(1) | A_BOLD);
 	in = newWindow(outSize + 1, 0, inSize - 1, cols - 2, COLOR_PAIR(2));
 
-    pthread_attr_init(&attr);
-    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    pthread_create(&sendt, NULL, sender, &sockfd);
-    pthread_attr_destroy(&attr);
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	pthread_create(&sendt, NULL, sender, &sockfd);
+	pthread_attr_destroy(&attr);
 
 	while (1)
 	{
