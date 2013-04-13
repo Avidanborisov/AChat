@@ -218,10 +218,11 @@ void makeResponse(char* msg, char* name, int nameExists)
 void sendToAll(Client clients[], int clientsNum, char* msg)
 {
 	int j;
+	size_t len = strlen(msg) + 1;
 
 	for (j = 0; j < clientsNum; j++)
 	{
-		if (send(clients[j].sockfd, msg, strlen(msg) + 1, 0) == -1)
+		if (send(clients[j].sockfd, msg, len, 0) == -1)
 		{
 			perror("server: send");
 		}
