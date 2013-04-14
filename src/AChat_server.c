@@ -11,7 +11,7 @@ typedef struct Client
 
 int initServer(void);
 int newConnection(int listener, fd_set* master, int* fdmax);
-void makeResponse(char* msg, char* name, int nameExists);
+void makeResponse(char* msg, char* name);
 void sendToAll(Client clients[], int clientsNum, char* msg);
 void swapClients(Client* a, Client* b);
 
@@ -99,7 +99,7 @@ int main(void)
 
 					if (bytes >= 0)
 					{
-						makeResponse(msg, name, name[0] != '\0');
+						makeResponse(msg, name);
 						printf("%s", msg);
 						sendToAll(clients, clientsNum, msg);
 					}
@@ -195,9 +195,9 @@ int newConnection(int listener, fd_set* master, int* fdmax)
 	return sockfd;
 }
 
-void makeResponse(char* msg, char* name, int nameExists)
+void makeResponse(char* msg, char* name)
 {
-	if (!nameExists) /* Client joines */
+	if (name[0] == '\0') /* Client joines */
 	{
 		strcpy(name, msg);
 		strcat(msg, " joined.\n");
